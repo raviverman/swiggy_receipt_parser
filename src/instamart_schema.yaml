@@ -193,20 +193,38 @@ trailer:
       required: false
       multiline: false
   swiggy:
-    cgst:
-      regex: "(?<=CGST)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
+    cgst_percent:
+      regex: "(?<=CGST)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%"
       type: float
       required: false
       multiline: false
 
-    sgst:
-      regex: "(?<=SGST/UTGST)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
+    cgst_amount:
+      regex: "(?<=CGST)\\s+\\d+(?:.\\d+)%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
       type: float
       required: false
       multiline: false
 
-    state_cess:
-      regex: "(?<=State CESS)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
+    sgst_percent:
+      regex: "(?<=SGST/UTGST)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%"
+      type: float
+      required: false
+      multiline: false
+
+    sgst_amount:
+      regex: "(?<=SGST/UTGST)\\s+\\d+(?:.\\d+)?%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
+      type: float
+      required: false
+      multiline: false
+
+    state_cess_percent:
+      regex: "(?<=State CESS)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%"
+      type: float
+      required: false
+      multiline: false
+
+    state_cess_amount:
+      regex: "(?<=State CESS)\\s+\\d+(?:.\\d+)?%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
       type: float
       required: false
       multiline: false
