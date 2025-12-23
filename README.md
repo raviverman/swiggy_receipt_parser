@@ -3,8 +3,6 @@
 This repo contains two scripts.
 1. To extract swiggy pdfs receipts from mails stored in an mbox file.
 2. To parse these pdfs and generate json.
-    a. Only supports parsing instamart receipts.
-    b. TODO: Added schema for food order receipts.
 
 ## Running the script locally
 

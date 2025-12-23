@@ -88,12 +88,14 @@ def nest_fields(schema: Dict) -> Dict:
             prefixes = key.split(":")
             obj = result
             for prefix in prefixes:
+                if prefix.startswith("_"): # ignore hidden fields
+                    break
                 if prefix == prefixes[-1]:
                     obj.setdefault(prefix, value)
                     break
                 obj.setdefault(prefix, {})   
                 obj = obj[prefix]
-        else:
+        elif not key.startswith("_"): # ignore hidden fields
             result.update( { key: value} )
     return result
 

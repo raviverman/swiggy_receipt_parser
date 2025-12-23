@@ -1,0 +1,154 @@
+invoice:
+  header: "TAX INVOICE" # this marks the start of the invoice header
+  swiggy:
+    invoice_no:
+      regex: "Invoice No:\\s*([A-Z0-9]+)"
+      required: true
+      multiline: false
+
+    invoice_date:
+      regex: "Date of Invoice:\\s*([\\d-]+)"
+      required: true
+      multiline: false
+
+    doc_type:
+      regex: "Document:\\s*(.+)"
+      required: true
+      multiline: false
+
+    reverse_charge_applicable:
+      regex: "Reverse Charges Applicable:\\s*(.+)"
+      required: true
+      multiline: false
+
+    category:
+      regex: "Category:\\s*(.+)"
+      required: true
+      multiline: false
+
+    service_desc:
+      regex: "Service Description:\\s*(.+)"
+      required: true
+      multiline: false
+
+    place_of_supply:
+      regex: "Place of Supply:\\s*(.+)"
+      required: true
+      multiline: false
+
+    _hidden:
+      regex: "Invoice issued by \\s*(.+)"
+      required: true
+      multiline: true
+
+    seller:
+      name:
+        regex: "Restaurant Name:\\s*(.+)"
+        required: true
+        multiline: true
+
+      fssai:
+        regex: "Restaurant FSSAI License:\\s*(.+)"
+        required: true
+        multiline: false
+
+      address:
+        regex: "^Address:\\s*(.+)"
+        required: true
+        multiline: true
+
+      pin_code:
+        regex: "Pincode:\\d*(.+)"
+        required: true
+        multiline: true
+        type: int
+
+      state:
+        regex: "State:\\d*(.+)"
+        required: true
+        multiline: true
+        type: int
+
+      gstin:
+        regex: "Restaurant GSTIN:\\s*([A-Z0-9]+)"
+        required: true
+        multiline: false
+
+    buyer:
+      invoice_to:
+        regex: "Invoice To:\\s*(.+)"
+        required: true
+        multiline: false
+
+      address:
+        regex: "Customer Address:\\s*(.+)"
+        required: true
+        multiline: true
+
+      gstin:
+        regex: "GSTIN:\\s*(Unregistered|[A-Z0-9]+)"
+        required: true
+        multiline: false
+
+items:
+  swiggy:
+    header_contains: "Unit Of Measure"
+    columns:
+      sr_no: { index: 0, type: int }
+      description: { index: 1, type: str }
+      unit_of_measure: { index: 2, type: str}
+      quantity: { index: 3, type: int }
+      unit_price: { index: 4, type: float }
+      amount: { index: 6, type: float }
+      discount: { index: 7, type: float }
+      net_assessable_value: { index: 8, type: float }
+      total_amount: { index: -1, type: float }
+trailer:
+  swiggy:
+    cgst_percent:
+      regex: "(?<=CGST)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%"
+      type: float
+      required: false
+      multiline: false
+
+    cgst_amount:
+      regex: "(?<=CGST)\\s+\\d+(?:.\\d+)%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
+      type: float
+      required: false
+      multiline: false
+
+    sgst_percent:
+      regex: "(?<=SGST/UTGST)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%"
+      type: float
+      required: false
+      multiline: false
+
+    sgst_amount:
+      regex: "(?<=SGST/UTGST)\\s+\\d+(?:.\\d+)?%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
+      type: float
+      required: false
+      multiline: false
+
+    igst_percent:
+      regex: "(?<=IGST)\\s+(?P<percent>\\d+(?:\\.\\d+)?)%"
+      type: float
+      required: false
+      multiline: false
+
+    igst_amount:
+      regex: "(?<=IGST)\\s+\\d+(?:.\\d+)?%\\s+(?P<value>\\d+(?:\\.\\d+)?)"
+      type: float
+      required: false
+      multiline: false
+
+    total_taxes:
+      regex: "Total taxes\\s*([\\d.]+)"
+      type: float
+      required: false
+      multiline: false
+
+    invoice_value:
+      regex: "Invoice Total\\s*([\\d.]+)"
+      type: float
+      required: false
+      multiline: false
