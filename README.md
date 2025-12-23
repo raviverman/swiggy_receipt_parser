@@ -1,4 +1,4 @@
-# swiggy_receipt_parser
+# Swiggy PDF Receipt Parser
 
 This repo contains two scripts.
 1. To extract swiggy pdfs receipts from mails stored in an mbox file.
@@ -6,7 +6,7 @@ This repo contains two scripts.
     a. Only supports parsing instamart receipts.
     b. TODO: Added schema for food order receipts.
 
-### Running the script locally
+## Running the script locally
 
 1. Make sure you've all the python dependencies installed.
 
@@ -24,7 +24,7 @@ This repo contains two scripts.
 
     `./parse_receipts.py --schema instamart_schema.yaml <receipt>.pdf --validate`
 
-### Running the docker image.
+## Running the docker image.
 
 ```sh
 docker build -t swiggy:latest .
@@ -37,7 +37,7 @@ cp *.mbox ./data
 docker run -e MBOX_FILE=/app/datai/mails.mbox -v ./data:/app/data swiggy:latest
 ```
 
-## How to get a mbox file
+## How to get an mbox file
 An mbox file is a collection of mails stored in plain text format. The
 attachments are encoded into base64 and then written to the file.
 
