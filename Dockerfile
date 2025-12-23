@@ -3,7 +3,10 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy application code (but NOT runtime data)
-COPY . /app
+COPY ./src/* /app
+
+# Copy entrypoint
+COPY ./docker_start.sh /app
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
